@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Lato', sans-serif;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #2a2a2e;
+}
+.container {
+    width: 1070px;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.search-bar {
+    padding-top: 20px;
+}
+.movies-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 100px 0;
+}
+
+.movie {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    flex-basis: 200px;
+    padding: 20px;
+    margin: 10px 20px;
+    height: 360px;
+    background-color: lightgrey;
+    text-align: center;
+}
