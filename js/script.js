@@ -45,8 +45,29 @@ function print(risultato){
     $('.movies-container').empty();
 
     for (var i = 0; i < risultato.results.length; i++){
-        var context = risultato.results[i];
+        // var context = risultato.results[i];
+        var context = {
+            title: risultato.results[i].title,
+            original_title: risultato.results[i].original_title,
+            original_language: risultato.results[i].original_language,
+            vote_average: stars(risultato.results[i].vote_average)
+        }
         var html = template(context);
         $('.movies-container').append(html);
     }
+}
+
+function stars(num){
+    var vote = Math.ceil(num/2);
+    console.log(num);
+    console.log(vote);
+    var star = '';
+    for (var i = 0; i < 5; i++){
+        if (i <= vote){
+            star += '<i class="fas fa-star"></i>';
+        } else {
+            star += '<i class="far fa-star"></i>';
+        }
+    }
+    return star;
 }
