@@ -4,8 +4,10 @@ $(document).ready(function(){
         //memorizza il valore inserito e ripulisce il campo
         var thisFilm = $('#search-text').val();
         $('#search-text').val('');
+        $('.movies-container').empty();
         //richiama funzione search
-        search(thisFilm);
+        search(thisFilm, "https://api.themoviedb.org/3/search/movie");
+        search(thisFilm, "https://api.themoviedb.org/3/search/tv" );
     });
     //search tramite tasto invio
     $('#search-text').on('keypress',function(e) {
@@ -13,17 +15,19 @@ $(document).ready(function(){
         //memorizza il valore inserito e ripulisce il campo
         var thisFilm = $('#search-text').val();
         $('#search-text').val('');
+        $('.movies-container').empty();
         //richiama funzione search
-        search(thisFilm);
+        search(thisFilm, "https://api.themoviedb.org/3/search/movie");
+        search(thisFilm, "https://api.themoviedb.org/3/search/tv" );
         }
     });
 });
 
 //** FUNZIONI
 //funzione di ricerca tramite chiamata AJAX
-function search(data) {
+function search(data, url) {
     $.ajax({
-        url: "https://api.themoviedb.org/3/search/movie",
+        url: url,
         method: "GET",
         data:   {
                     'api_key': '4da0218809ca2f6f521556b2d525d050',
@@ -42,15 +46,14 @@ function print(risultato){
     var source = $("#entry-template").html();
     var template = Handlebars.compile(source);
 
-    $('.movies-container').empty();
-
     for (var i = 0; i < risultato.results.length; i++){
         // var context = risultato.results[i];
         var context = {
-            title: risultato.results[i].title,
+            title: risultato.results[i].title || risultato.results[i].original_name,
             original_title: risultato.results[i].original_title,
             original_language: risultato.results[i].original_language,
-            vote_average: stars(risultato.results[i].vote_average)
+            vote_average: stars(risultato.results[i].vote_average),
+            type: type(risultato.results[i].original_title)
         }
         var html = template(context);
         $('.movies-container').append(html);
@@ -59,8 +62,6 @@ function print(risultato){
 
 function stars(num){
     var vote = Math.ceil(num/2);
-    console.log(num);
-    console.log(vote);
     var star = '';
     for (var i = 0; i < 5; i++){
         if (i <= vote){
@@ -70,4 +71,12 @@ function stars(num){
         }
     }
     return star;
+}
+
+function type(data){
+    if (data != null){
+        return 'Movie'
+    } else {
+        return 'Serie TV'
+    }
 }
