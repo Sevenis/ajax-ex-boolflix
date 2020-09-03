@@ -17,6 +17,7 @@ body{
 .search-bar {
     padding-top: 20px;
 }
+
 .movies-container {
     display: flex;
     justify-content: center;
@@ -36,4 +37,9 @@ body{
     height: 360px;
     background-color: lightgrey;
     text-align: center;
+}
+
+.movie img {
+    width: 30px;
+    height: 30px;
 }
