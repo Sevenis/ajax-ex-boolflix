@@ -11,9 +11,13 @@
     </head>
     <body>
         <div class="container">
-            <div class="search-bar">
-                <input type="text" id = "search-text" placeholder="Film da cercare..."></input>
-                <button id = "search-button">Cerca!</button>
+
+            <div class="header">
+                <img src="https://i.ibb.co/9rq9pVh/netflix-log.png" alt="BOOLFLIX">
+                <div class="search-bar">
+                    <input type="text" id = "search-text" placeholder="Film da cercare..."></input>
+                    <button id = "search-button">Cerca!</button>
+                </div>
             </div>
 
             <div class="movies-container"></div>
@@ -21,12 +25,14 @@
 
         <script id="entry-template" type="text/x-handlebars-template">
             <div class="movie">
-              <!-- <img src="{{poster}}" alt=""> -->
-              <h3>{{title}}</h3>
-              <span class="original-title">{{original_title}}</span>
-              <img src="img/{{original_language}}.svg" alt="{{original_language}}">
-              <span class="vote">{{{vote_average}}}</span>
-              <span class="type">{{type}}</span>
+                <span class="poster"><img src="https://image.tmdb.org/t/p/w342{{poster}}" alt="{{title}}"></span>
+                <div class="movie-details">
+                  <h3>{{title}}</h3>
+                  <span class="original-title">{{original_title}}</span>
+                  <span class="flag"><img src="img/{{original_language}}.svg" alt="{{original_language}}"></span>
+                  <span class="vote">{{{vote_average}}}</span>
+                  <span class="type">{{type}}</span>
+              </div>
             </div>
         </script>
 

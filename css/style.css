@@ -9,37 +9,60 @@ body{
     background-color: #2a2a2e;
 }
 .container {
-    width: 1070px;
     height: 100%;
     margin: 0 auto;
 }
 
-.search-bar {
-    padding-top: 20px;
+.header {
+    width: 100vw;
+    height: 50px;
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    line-height: 50px;
+    align-items: center;
+}
+
+.header img {
+    height: 30px;
 }
 
 .movies-container {
+    width: 1070px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    padding: 100px 0;
+    padding: 50px 0;
+    margin: 0 auto;
 }
 
 .movie {
+    width: 350px;
+    height: 525px;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     flex-direction: column;
-    flex-basis: 200px;
-    padding: 20px;
     margin: 10px 20px;
-    height: 360px;
     background-color: lightgrey;
     text-align: center;
+    position: relative;
 }
 
-.movie img {
+.movie-details {
+    display: none;
+}
+
+.movie:hover .movie-details {
+    display: block;
+    position: absolute;
+    background-color: black;
+    color: white;
+}
+
+.flag img {
     width: 30px;
     height: 30px;
 }

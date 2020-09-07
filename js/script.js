@@ -38,7 +38,6 @@ function search(data, url, type) {
                 },
         success: function (risposta) {
             print(risposta, type);
-            console.log(type);
         },
         error: function (richiesta, stato, errori) {
             alert("E' avvenuto un errore. " + errore);
@@ -53,14 +52,17 @@ function print(risultato, type){
 
     for (var i = 0; i < risultato.results.length; i++){
         var context = {
-            title: risultato.results[i].title || risultato.results[i].original_name,
-            original_title: risultato.results[i].original_title,
+            title: risultato.results[i].title || risultato.results[i].name,
+            original_title: risultato.results[i].original_title || risultato.results[i].original_name,
             original_language: risultato.results[i].original_language,
             vote_average: stars(risultato.results[i].vote_average),
-            type: type
+            type: type,
+            poster: risultato.results[i].poster_path
         }
+        console.log(context.poster);
         var html = template(context);
         $('.movies-container').append(html);
+
     }
 }
 
