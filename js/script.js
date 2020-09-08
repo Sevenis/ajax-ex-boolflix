@@ -57,7 +57,8 @@ function print(risultato, type){
             original_language: risultato.results[i].original_language,
             vote_average: stars(risultato.results[i].vote_average),
             type: type,
-            poster: risultato.results[i].poster_path
+            poster: risultato.results[i].poster_path,
+            overview: risultato.results[i].overview
         }
         console.log(context.poster);
         var html = template(context);

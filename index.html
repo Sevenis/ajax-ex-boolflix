@@ -27,11 +27,12 @@
             <div class="movie">
                 <span class="poster"><img src="https://image.tmdb.org/t/p/w342{{poster}}" alt="{{title}}"></span>
                 <div class="movie-details">
-                  <h3>{{title}}</h3>
-                  <span class="original-title">{{original_title}}</span>
-                  <span class="flag"><img src="img/{{original_language}}.svg" alt="{{original_language}}"></span>
-                  <span class="vote">{{{vote_average}}}</span>
-                  <span class="type">{{type}}</span>
+                  <h2>{{title}}</h2>
+                  <h4 class="original-title">Titolo originale: {{original_title}}</h4>
+                  <a class="flag"><img src="img/{{original_language}}.svg" alt="{{original_language}}"></a>
+                  <p class="vote">{{{vote_average}}}</p>
+                  <p class="type">{{type}}</p>
+                  <p class="overview"><strong>Overview:</strong> {{overview}}</p>
               </div>
             </div>
         </script>
