@@ -50,12 +50,6 @@ function print(risultato, type){
     var source = $("#entry-template").html();
     var template = Handlebars.compile(source);
 
-    if(type == "Movies"){
-            var credits = credits_MOVIES(risultato.results[i].id);
-    } else {
-            var credits = credits_TV(risultato.results[i].id);
-    }
-
     for (var i = 0; i < risultato.results.length; i++){
         var context = {
             title: risultato.results[i].title || risultato.results[i].name,
@@ -67,7 +61,6 @@ function print(risultato, type){
             overview: risultato.results[i].overview,
             cast: credits(risultato.results[i].id, type)
         }
-        console.log(context.cast);
         var html = template(context);
         $('.movies-container').append(html);
 
@@ -89,24 +82,49 @@ function stars(num){
     return star;
 }
 
-function credits_TV(id){
-    $.ajax({
-        url: "https://developers.themoviedb.org/3/tv/get-tv-credits",
-        method: "GET",
-        data: {
-            'api_key': '4da0218809ca2f6f521556b2d525d050',
-            'tv_id': id,
-            'language': 'it-IT'
-        },
-        success: function (risposta) {
-            for(var i = 0; i < 3; i++){
-                return risposta.cast.name[i];
+function credits(id, type){
+    if(type == "TV Series"){
+        $.ajax({
+            url: "https://api.themoviedb.org/3/tv/" + id + "/credits",
+            method: "GET",
+            data: {
+                'api_key': '4da0218809ca2f6f521556b2d525d050',
+                // 'tv_id': id,
+                'language': 'it-IT'
+            },
+            success: function (risposta) {
+                var nameCast = "";
+                for(var i = 0; i < 3; i++){
+                    nameCast += risposta.cast[i].name + " ";
+                }
+                console.log(nameCast);
+                return nameCast;
+            },
+            error: function (richiesta, stato, errori) {
+                alert("E' avvenuto un errore.");
             }
-        },
-        error: function (richiesta, stato, errori) {
-            alert("E' avvenuto un errore.");
-        }
-    });
+        });
+    } else if (type == "Movies"){
+        $.ajax({
+            url: "https://api.themoviedb.org/3/movie/" + id ,
+            method: "GET",
+            data: {
+                'api_key': '4da0218809ca2f6f521556b2d525d050',
+                // 'movie_id': id,
+                'language': 'it-IT'
+            },
+            success: function (risposta) {
+                var nameCast = "";
+                for(var i = 0; i < 3; i++){
+                    nameCast += risposta.cast[i].name + " ";
+                }
+                return nameCast;
+            },
+            error: function (richiesta, stato, errori) {
+                alert("E' avvenuto un errore.");
+            }
+        });
+    }
 }
 
 //funzione alternativa che gestisce il tipo tra SerieTV e Movie
